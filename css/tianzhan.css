@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 100px; }
+
+ul, li, ol {
+  list-style: none; }
+
+@font-face {
+  font-family: "iconfont";
+  src: url("../img/iconfont/iconfont.ttf");
+  src: url("../img/iconfont/iconfont.woff"); }
+@font-face {
+  font-family: "iconmenu";
+  src: url("../img/iconfont/iconfont-back.ttf");
+  src: url("../img/iconfont/iconfont-back.woff"); }
+html, body, .wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+body {
+  font-size: 0.16rem; }
+
+.m-detail {
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  -webkit-flex-direction: column; }
+  .m-detail header {
+    width: 100%;
+    height: 0.44rem;
+    background: #0cc042; }
+    .m-detail header ul {
+      display: -webkit-flex;
+      color: #fff;
+      font-size: 0.16rem; }
+      .m-detail header ul > li {
+        line-height: .44rem; }
+        .m-detail header ul > li.iconmenu {
+          font-family: "iconmenu";
+          width: 44px;
+          text-align: center;
+          font-weight: 200; }
+          .m-detail header ul > li.iconmenu a {
+            text-decoration: none;
+            color: #fff; }
+        .m-detail header ul > li.iconfont {
+          font-family: "iconfont";
+          width: 44px;
+          text-align: center;
+          font-weight: 200; }
+        .m-detail header ul > li:nth-child(2) {
+          -webkit-flex: 1;
+          text-align: center; }
+        .m-detail header ul > li p {
+          font-size: 0.14rem; }
+  .m-detail .img img {
+    width: 100%;
+    height: 50%; }
+  .m-detail .content p {
+    font-size: 0.14rem;
+    line-height: 0.30rem;
+    text-align: center; }
+
+.mark {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99; }
+
+.loader {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #000;
+  border-bottom-color: transparent;
+  z-index: 100;
+  -webkit-animation: rotate 0.75s linear infinite; }
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  50% {
+    -webkit-transform: rotate(180deg); }
+  100% {
+    -webkit-transform: rotate(306deg); } }
+
+/*# sourceMappingURL=tianzhan.css.map */

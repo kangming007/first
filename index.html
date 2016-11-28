@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+ 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<title>Document</title>
+
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+	<div class="wrap">
+		<header>
+			<ul>
+				<li class="iconmenu">&#xe745;</li>
+				<li>
+					<p id="title"> 
+						<span class="active">热点</span>
+                    	<span>关注</span>
+					</p>
+				</li>
+				<li class="iconfont">&#xe684;</li>
+			</ul>
+		</header>
+		
+		<main>
+			
+			
+			<div class="swiper-container" id="main">
+				    <div class="swiper-wrapper">
+				        <div class="swiper-slide">
+				        	<nav>
+								<ul id="uls">
+									<li class="bg">足球现场</li>
+									<li>足球生活</li>
+									<li>足球美女</li>
+								</ul>
+							</nav>
+				        	<div class="content" >
+								 <div class="scroll">
+									<div class="swiper-container" id="content">
+									  <div class="swiper-wrapper">
+									    <div class="swiper-slide" id="scroller">
+									    	
+									    </div>
+									    <div class="swiper-slide">足球生活</div>
+									    <div class="swiper-slide">足球美女</div>
+									  </div>
+									</div>
+								</div>
+							</div>
+
+				        </div>
+				        <div class="swiper-slide">关注1......</div>
+				    </div>
+				    <!-- 如果需要分页器
+				    <div class="swiper-pagination"></div>
+				    
+				    如果需要导航按钮
+				    <div class="swiper-button-prev"></div>
+				    <div class="swiper-button-next"></div>
+				    
+				    如果需要滚动条
+				    <div class="swiper-scrollbar"></div> -->
+				</div>
+		</main>
+		<footer>
+			 <ul>
+	              <li><span>&#xe6bb;</span><b>首页</b></li>
+	              <li><span>&#xe65c;</span><b>发现</b></li>
+	              <li><span class="big">&#xe664;</span></li>
+	              <li><span>&#xe735;</span><b>我的</b></li>
+	              <li><span>&#xe603;</span><b>搜索</b></li>
+           	</ul>
+		</footer>
+	</div>
+	<script src="./js/iscroll.js"></script>
+	<script src="./js/zepto.min.js"></script>
+	<script src="./js/swiper.min.js"></script>
+	<script>
+	//var myScroll=new IScroll("#content")
+	
+	;(function($){
+		
+		$.ajax({
+			url:"js/livelist.json",
+			datatype:"json",
+			success:function(data){
+				//console.log(data.data)
+				var obj=data.data
+				var arr=[]
+				for(i=0;i<Math.ceil(obj.length/2);i++){
+					arr[i]=[]
+					arr[i].push(obj[i*2])
+					obj[i*2+1] && arr[i].push(obj[i*2+1])
+				}
+				//console.log(arr)
+				render(arr)
+				swiper()
+				
+			}
+		})
+
+		//渲染
+		function render(data){
+			console.log(data)
+			var html=""
+			for(i=0;i<data.length;i++){
+				//console.log(data[i])
+					var obj1=data[i][0];
+					var obj2=data[i][1];
+					//console.log(obj2.img)
+					//console.log(obj1.img)
+					html+='<ul class="list" id="list">'
+							+'<li>'
+								+'<dl>'
+									+'<dt><a href="http://localhost:8000/H5/10.31/tiaozhan.html?id='+obj1.id+'"><img src="'+obj1.img+'" ></a></dt>'
+									+'<dd><a href="http://localhost:8000/H5/10.31/tiaozhan.html?id='+obj1.id+'">'+obj1.title+'</a></dd>'
+								+'</dl>'
+							+'</li>'
+							+'<li>'
+								+'<dl>'
+									+'<dt><a href="http://localhost:8000/H5/10.31/tiaozhan.html?id='+obj2.id+'"><img src="'+obj2.img+'" ></a></dt>'
+									+'<dd><a href="http://localhost:8000/H5/10.31/tiaozhan.html?id='+obj2.id+'">'+obj2.title+'</a></dd>'
+								+'</dl>'
+							+'</li>'
+						+'</ul>'
+			}
+			//console.log(html)
+			
+			$("#scroller").html(html)
+
+			//myScroll.refresh()
+		}
+		function swiper(){
+			
+			 var mainSwiper = new Swiper ('#main', {
+				 direction: 'horizontal',  //vertical  horizontal
+				 loop: false,
+				 //滑动之后触发的回调
+				 onSlideChangeStart:function(swiper){
+				 	//获取当前页面的索引
+				 	var ind=swiper.activeIndex;
+				 	showCurContent("#title",ind,"active")
+				 }
+				}) 
+			  var contSwiper = new Swiper ('#content', {
+				 direction: 'horizontal',  //vertical  horizontal
+				 loop: false,
+				 //滑动之后触发的回调
+				 onSlideChangeStart:function(swiper){
+				 	//获取当前页面的索引
+				 	var ind=swiper.activeIndex;
+				 	showCurContent("#uls",ind,"bg")
+				 }
+				}) 
+			
+		}
+		function sendImg(id){
+			                                                                                                                                                           vu
+			alert(1)
+		}
+		function showCurContent(obj,index,Cclass){
+			$(obj).children().eq(index).addClass(Cclass).siblings().removeClass(Cclass)
+		}
+	})(Zepto)
+		
+	</script>
+</body>
+</html>

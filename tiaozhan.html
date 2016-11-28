@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" /> -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<title>Document</title>
+	<link rel="stylesheet" href="css/tianzhan.css">
+</head>
+<body>
+	<div class="m-detail">
+		<header>
+			<ul>
+				<li class="iconmenu"><a href="http://localhost:8000/H5/10.31/index.html">&#xe61d;</a></li>
+				<li>
+					<p id="title"> 
+							<b>樱桃小丸子</b>
+					</p>
+				</li>
+				<li class="iconfont">&#xe684;</li>
+			</ul>
+		</header>
+		<section>
+				<p class="img" id="img"></p>
+				<div class="content" id="content"></div>
+				
+		</section>
+	</div>
+</body>
+</html>
+	<script src="./js/zepto.min.js"></script>
+
+	<script>
+		;(function($){
+			/*var r = window.location.search.substr(1).split("=")[1]
+			$.ajax({
+				url:"./js/livelist.json",
+				//data:{"id":r},
+				dataType:"json",
+				success:function(data){
+					//console.log(data)
+					$.each(data.data,function(i,val){
+						console.log(val)
+						if(val.id==r){
+							var html="<img src='"+val.img+"'/>"
+							$("#img").append(html)
+						}
+					})
+					
+				}
+			})*/
+			//显示动画加载   用构造函数
+			function Util(){
+
+			}
+			Util.prototype = {
+				//创建遮罩层
+				mark:function(){
+					if($("#mark").length==0){
+						$('<div id="mark" class="mark"></div>').appendTo($("body"))
+					}
+				},
+				
+				showLoad:function(){
+					this.mark()
+					if($("#loader").length==0){
+						$('<div class="loader" id="loader"></div>').appendTo($("body"))
+					}
+				},
+				removeLoad:function(){
+					$("#mark").remove()
+					$("#loader").remove()
+				},
+				servers:function(url,data,callback,method,async){
+						var that=this;
+						method=method?method:"get";
+						async=typeof(async)==="undefined"?true:aync;
+						this.showLoad()
+						$.ajax({
+							url:url,
+							data:data,
+							type:method,
+							async:async,
+							success:function(data){
+								setTimeout(function(){
+									that.removeLoad()
+									callback(data)
+								},3000)
+								
+							}
+						})
+				}
+			}
+			var r = window.location.search.substr(1).split("=")[1]
+			var mark=new Util()
+			function getJson(data){
+				//console.log(data)
+				$.each(data.data,function(i,val){
+					console.log(val)
+					if(val.id==r){
+						var html="<img src='"+val.img+"'/>"
+						$("#img").append(html)
+						var txt="<p>******************樱桃小丸子***************</p>"
+						$("#content").html(txt)
+					}
+				})
+			}
+			mark.servers("./js/livelist.json",{},getJson)
+			
+		})(Zepto)
+	</script>

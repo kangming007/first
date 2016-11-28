@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" /> -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<title>Document</title>
+	<link rel="stylesheet" href="css/shouye.css">
+</head>
+<body>
+	
+		<div class="swiper-container" id="my-swiper">
+		  	<div class="swiper-wrapper">
+			    <div class="swiper-slide">
+			    	<img src="img/slide1.png" alt="">
+			    </div>
+			    <div class="swiper-slide">
+			    	<img src="img/slide2.png" alt="">
+			    </div>
+			    <div class="swiper-slide">
+			    	<img src="img/slide3.png" alt="">
+			    </div>
+			    <div class="swiper-slide">
+			    	<img src="img/slide4.png" alt="">
+			    	<a id="btn" href="http://localhost:8000/H5/10.31/index.html"></a>
+			    </div>
+	  		</div>
+		</div>
+	<script src="./js/iscroll.js"></script>
+	<script src="./js/zepto.min.js"></script>
+	<script src="./js/swiper.min.js"></script>
+	<script>
+		;(function($){
+			function swiper(){
+				 var MySwiper = new Swiper ('#my-swiper', {
+				 direction: 'horizontal',  //vertical  horizontal
+				 loop: false,
+				 //滑动之后触发的回调
+				}) 
+			}
+			swiper()
+		})(Zepto)
+	</script>
+</body>
+</html>
